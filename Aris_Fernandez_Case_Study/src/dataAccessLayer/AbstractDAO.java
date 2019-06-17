@@ -32,13 +32,22 @@ public abstract class AbstractDAO {
 	 * @throws SQLException
 	 */
 	public void connect() throws SQLException {
-
+		String username, password, server, host, port, database, url;
 		try {
+
 			FileReader propertiesReader = new FileReader("DataBaseConfig.ini");
 			Properties connectionProperties = new Properties();
 			connectionProperties.load(propertiesReader);
-			connection = DriverManager.getConnection(connectionProperties.getProperty("url"),
-					connectionProperties.getProperty("username"), connectionProperties.getProperty("password"));
+
+			username = connectionProperties.getProperty("username");
+			password = connectionProperties.getProperty("password");
+			server = connectionProperties.getProperty("server");
+			host = connectionProperties.getProperty("host");
+			port = connectionProperties.getProperty("port");
+			database = connectionProperties.getProperty("database");
+			url = "jdbc:" + server + "://" + host + ":" + port + "/" + database;
+
+			connection = DriverManager.getConnection(url, username, password);
 
 		} catch (SQLException except) {
 			except.printStackTrace();
