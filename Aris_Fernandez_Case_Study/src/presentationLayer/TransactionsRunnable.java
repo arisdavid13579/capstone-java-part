@@ -13,6 +13,10 @@ import transferObjects.Transaction;
 import transferObjects.TransactionList;
 
 /**
+ * The TransactionsRunnable class contains all the methods needed to display the
+ * information for the transactions module as well as the methods needed to save
+ * CSV files all the information retrieved.
+ * 
  * @author Aris Fernandez
  */
 public class TransactionsRunnable {

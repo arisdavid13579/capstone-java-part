@@ -56,7 +56,7 @@ public class CustomersModuleMain {
 							Utilities.pseudoClearScreen(2);
 						}
 						Customer[] customer = { customerRun.getCustomerDetails(ssn, creditcard) };
-						if (autoSaved) {
+						if (savedToFile) {
 							Utilities.toCSV(customer);
 						}
 						System.out.println(
@@ -121,7 +121,7 @@ public class CustomersModuleMain {
 										break;
 									case "n":
 									case "no":
-										if (autoSaved) {
+										if (savedToFile) {
 											Utilities.toCSV(oldNewCustomerInfo);
 										}
 										System.out.println(
@@ -224,7 +224,7 @@ public class CustomersModuleMain {
 							case "b":
 							case "back":
 								if (updateCount > 0) {
-									if (autoSaved) {
+									if (savedToFile) {
 										Utilities.toCSV(oldNewCustomerInfo);
 									}
 								}
@@ -233,7 +233,7 @@ public class CustomersModuleMain {
 							case "quit":
 							case "q":
 								if (updateCount > 0) {
-									if (autoSaved) {
+									if (savedToFile) {
 										Utilities.toCSV(oldNewCustomerInfo);
 									}
 								}
@@ -289,7 +289,7 @@ public class CustomersModuleMain {
 						}
 						customer = new CustomersDaoImpl().getCustomerDetails(ssn, creditcard);
 						bill = customerRun.getCustomerBill(customer, month, year);
-						if (autoSaved) {
+						if (savedToFile) {
 							Utilities.toCSV(bill, "bill",
 									customer.getFirstName() + "_" + customer.getLastName() + "_" + year + "_" + month);
 						}
@@ -358,7 +358,7 @@ public class CustomersModuleMain {
 						}
 						transactions = customerRun.getTransactionRange(ssn, creditcard, output[0], output[1], output[2],
 								output[3], output[4], output[5]);
-						if (autoSaved) {
+						if (savedToFile) {
 							Utilities.toCSV(transactions, "range", "FROM_" + output[2] + "_" + output[1] + "_"
 									+ output[0] + "_TO_" + output[5] + "_" + output[4] + "_" + output[3]);
 						}
@@ -408,17 +408,17 @@ public class CustomersModuleMain {
 
 	}
 
-	private boolean autoSaved = true;
+	private boolean savedToFile = true;
 
 	/**
 	 * This method can turn on and off the ability to save to CSV files. Sets the
-	 * value of autoSaved.
+	 * value of savedToFile.
 	 *
-	 * @param autoSaved true if saving to a file is desired.
+	 * @param savedToFile True if saving to a file is desired.
 	 */
-	public void setAutosave(boolean autoSaved) {
+	public void setAutosave(boolean saveToFile) {
 
-		this.autoSaved = autoSaved;
+		this.savedToFile = saveToFile;
 	}
 
 	public static void main(String[] args) {

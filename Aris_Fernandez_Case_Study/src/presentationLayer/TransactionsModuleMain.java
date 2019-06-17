@@ -141,11 +141,11 @@ public class TransactionsModuleMain {
 	 * This method can turn on and off the ability to save to CSV files. Sets the
 	 * value of autoSaved.
 	 *
-	 * @param autosave the new autosave
+	 * @param saveToFile True if saving to a file is desired.
 	 */
-	public void setAutosave(boolean autosave) {
+	public void setAutosave(boolean saveToFile) {
 
-		this.autosave = autosave;
+		this.autosave = saveToFile;
 	}
 
 	public static void main(String[] args) {

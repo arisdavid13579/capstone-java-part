@@ -12,12 +12,13 @@ import transferObjects.Customer;
 import transferObjects.TransactionList;
 
 /**
- * The Class CustomersRunnable.
- *
+ * The CustomersRunnable class contains all the methods needed to display the
+ * information for the customer module as well as the methods needed to save CSV
+ * files for the customer module.
+ * 
  * @author Aris Fernandez
  */
 public class CustomersRunnable {
-
 
 	public Customer getCustomerDetails(String ssn, String creditCardNo) throws NoResultsFoundException, SQLException {
 		System.out.println();
@@ -29,8 +30,8 @@ public class CustomersRunnable {
 		return customer;
 	}
 
-
-	public Customer updateCustomerDetails(String ssn, String creditCardNo, String columnName, Object columnValue) throws SQLException {
+	public Customer updateCustomerDetails(String ssn, String creditCardNo, String columnName, Object columnValue)
+			throws SQLException {
 
 		CustomersDaoImpl custImpl = new CustomersDaoImpl();
 		Customer customer = null;
@@ -53,8 +54,8 @@ public class CustomersRunnable {
 
 	}
 
-
-	public TransactionList getCustomerBill(Customer customerInfo, int month, int year) throws NoResultsFoundException, SQLException {
+	public TransactionList getCustomerBill(Customer customerInfo, int month, int year)
+			throws NoResultsFoundException, SQLException {
 
 		CustomersDaoImpl custImpl = new CustomersDaoImpl();
 
@@ -84,8 +85,6 @@ public class CustomersRunnable {
 		return null;
 	}
 
-
-	
 	public TransactionList getTransactionRange(String ssn, String creditCardNo, int from_Day, int from_Month,
 			int from_Year, int to_Day, int to_Month, int to_Year) throws NoResultsFoundException, SQLException {
 
@@ -121,9 +120,10 @@ public class CustomersRunnable {
 	}
 
 	/**
-	 * Creates the display header for when
+	 * Creates the header used for the output of the customer bill and transactions
+	 * between two dates submodules.
 	 *
-	 * @return the string
+	 * @return Returns a concatenation of column names.
 	 */
 	private String createDisplayHeader() {
 		String branch, date, id, value, cardNo, type, updated, delimiter;
@@ -134,15 +134,18 @@ public class CustomersRunnable {
 		value = "AMOUNT ";
 		cardNo = "CARD NUMBER     ";
 		type = "TYPE         ";
-		updated="LAST_UPDATED      ";
-		return id + delimiter + date + delimiter + cardNo + delimiter + type + delimiter + branch + delimiter + value + delimiter + updated;
+		updated = "LAST_UPDATED      ";
+		return id + delimiter + date + delimiter + cardNo + delimiter + type + delimiter + branch + delimiter + value
+				+ delimiter + updated;
 	}
 
 	/**
-	 * Creates the csv header.
+	 * Creates the table header used for when customer information is saved to a
+	 * file. The header changes depending on whether the method is calling while
+	 * updating customer information or just displaying the information.
 	 *
-	 * @param toUpdate the to update
-	 * @return the string
+	 * @param True if the method is called during an update.
+	 * @return Returns a concatenation of the column names.
 	 */
 	public static String createCsvHeader(boolean toUpdate) {
 		String fName, mName, lName, ssn, creditcardNo, aptNo, street, city, state, country, zip, phone, email, updated,
@@ -175,9 +178,10 @@ public class CustomersRunnable {
 	}
 
 	/**
-	 * Creates the table header.
+	 * Prepares the table column headers for displaying customer informaton in table
+	 * format.
 	 *
-	 * @return the string
+	 * @return A string concatenation of all column names.
 	 */
 	public String createTableHeader() {
 		String fName, mName, lName, aptNo, street, city, state, country, zip, phone, email, updated, delimiter, output;
@@ -202,10 +206,12 @@ public class CustomersRunnable {
 	}
 
 	/**
-	 * Customer table info.
+	 * Customer information printed in table format.
 	 *
-	 * @param customer the customer
-	 * @return the string
+	 * @param customer The customer object whose information is going to be
+	 *                 displayed.
+	 * @return A two-line string with the first line being column names and the
+	 *         second the corresponding customer information.
 	 */
 	public String customerTableInfo(Customer customer) {
 		System.out.println();
