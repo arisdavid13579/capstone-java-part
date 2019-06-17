@@ -1,5 +1,5 @@
 # Credit Card Transactions Management System
-#### Java Module for Per Scholas' Data Engineering Training Course Final Project
+## Java Module for Per Scholas' Data Engineering Training Course Final Project
 
 The Java module of the capstone case study project for the Data Engineering course at Platform by Per Scholas. It is a program to access and update the information on a database containing credit card transactions and customer information. 
 
